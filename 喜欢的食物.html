@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美食</title>
+    <body style="background-color: #f5e8ae;"></body>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        /* 导航栏样式 */
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            background-color: #333;
+            padding: 1em 0;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .navbar a:hover {
+            background-color: #fea0a0;
+        }
+
+        /* 轮播图样式 */
+        .carousel {
+            position: relative;
+            max-width: 600px; /* 轮播图最大宽度 */
+            margin: 20px auto; /* 居中显示 */
+            overflow: hidden;
+            border: 2px solid #ddd; /* 边框 */
+        }
+        .carousel img {
+            width: 100%;
+            display: none; /* 默认隐藏所有图片 */
+        }
+        .active {
+            display: block; /* 显示当前活动的图片 */
+        }
+
+        /* 圆点指示器样式 */
+        .dots {
+            text-align: center;
+            padding: 10px 0;
+        }
+        .dot {
+            height: 10px;
+            width: 10px;
+            margin: 0 5px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .dot.active {
+            background-color: #717171; /* 活动指示器颜色 */
+        }
+    </style>
+</head>
+<body>
+
+<!-- 导航栏 -->
+<div class="navbar">
+    <a href="index.html" class="active">主页</a>
+    <a href="喜欢的电影.html">喜欢的电影</a>
+    <a href="喜欢的食物.html">喜欢的食物</a>
+    <a href="我的家乡.html">我的家乡</a>
+    <a href="校园美景.html">校园美景</a>
+    <a href=" https://flyjumpbow.github.io/609/">寝室页面609</a>
+</div>
+
+<!-- 轮播图部分 -->
+<div class="carousel">
+    <img src="img\IMG_20241024_123255.jpg" class="active" alt="图片1">
+    <img src="img\IMG_20240927_181827.jpg" alt="图片2">
+    <img src="img\IMG_20240912_120640.jpg" alt="图片3">
+    
+    <!-- 圆点指示器 -->
+    <div class="dots">
+        <span class="dot active" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+</div>
+
+<script>
+    let slideIndex = 1;
+    showSlides(slideIndex);
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        const slides = document.querySelectorAll('.carousel img');
+        const dots = document.querySelectorAll('.dot');
+        
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        
+        slides.forEach((slide, index) => {
+            slide.style.display = "none";  
+            dots[index].className = dots[index].className.replace(" active", "");
+        });
+        
+        slides[slideIndex - 1].style.display = "block";  
+        dots[slideIndex - 1].className += " active";
+    }
+
+    setInterval(() => {
+        showSlides(slideIndex += 1);
+    }, 2000); // 每2秒切换一次
+</script>
+
+</body>
+</html>
